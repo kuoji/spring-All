@@ -16,5 +16,15 @@ public class OrderRabbitmqProducerApplicationTests {
         orderService.makeOrder("1","1",12);
     }
 
+    @Test
+    void testOrderDirect(){
+        orderService.makeOrderDirect("1","1",12);
+    }
+
+    @Test
+    void testOrderTopic(){
+        orderService.makeOrderTopic("1","1",12);
+    }
+
 
 }
