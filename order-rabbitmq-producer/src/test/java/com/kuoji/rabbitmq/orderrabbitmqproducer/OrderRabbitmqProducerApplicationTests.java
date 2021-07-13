@@ -2,9 +2,13 @@ package com.kuoji.rabbitmq.orderrabbitmqproducer;
 
 import com.kuoji.rabbitmq.orderrabbitmqproducer.service.OrderService;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @SpringBootTest
 public class OrderRabbitmqProducerApplicationTests {
 

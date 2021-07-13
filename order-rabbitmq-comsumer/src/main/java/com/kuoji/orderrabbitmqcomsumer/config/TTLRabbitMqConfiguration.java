@@ -25,9 +25,15 @@ public class TTLRabbitMqConfiguration {
     // 队列的过期时间
     @Bean
     public Queue ttlDirectQueue(){
-        // 设置过期时间
+        // 修改 args 队列的参数，要先删除队列再创建 (线上模式则重新创建，切记不能删除正在运行的队列)
         Map<String,Object> args = new HashMap<>();
-        args.put("x-message-ttl",5000); // 这里一定是int类型
+        // 设置过期时间，这里一定是 int 单位为 ms
+        args.put("x-message-ttl",5000);
+        args.put("x-max-length",5);
+//        // 设置死信队列
+        args.put("x-dead-letter-exchange","dead_direct_exchange");
+        // 这里为 direct 模式 则有 key,  fanout不需要配置
+        args.put("x-dead-letter-routing-key","dead");
         return new Queue("ttl.direct.queue",true,false,false,args);
     }
 
