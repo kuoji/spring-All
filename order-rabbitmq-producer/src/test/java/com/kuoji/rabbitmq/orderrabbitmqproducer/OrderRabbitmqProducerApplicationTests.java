@@ -26,5 +26,17 @@ public class OrderRabbitmqProducerApplicationTests {
         orderService.makeOrderTopic("1","1",12);
     }
 
+    @Test
+    void testOrderTtl(){
+        orderService.makeOrderTtl("1","1",12);
+    }
+
+    @Test
+    void testOrderTtlMessage(){
+        orderService.makeOrderTtlMessage("1","1",12);
+    }
+
+
+
 
 }
