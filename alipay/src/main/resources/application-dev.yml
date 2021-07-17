@@ -1,0 +1,38 @@
+# 数据库连接
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/kuangstudy-db?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    hikari:
+      connection-timeout: 60000
+      validation-timeout: 3000
+      idle-timeout: 60000
+      login-timeout: 5
+      max-lifetime: 60000
+      maximum-pool-size: 400
+      minimum-idle: 100
+      read-only: false
+# 日志管理
+logging:
+  level:
+    root: info
+
+# 支付宝支付参数配置
+alipay:
+  app_id: 2021000117690269
+  #商户私钥
+  merchant_private_key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCB6m8gjuynRFcbivYJgZAj+RohSAAut7fHPhvkN5uYN3lrvo/Z90umc9lhyIS2CrXBhV3JPdq+y0+QowdQSRUQn0wF7LD6Hp/IIzEUVDrdZEJutWbtUbYeBNmeBGzCMseAWHrtGlL+jhfZVWqUV36JgFwVp8WkcuNVPYZAfMTyj1t38SuR/RFBMQ8feFlR9tFbKpWALentSMwLeT2hPEBvYLQ7g67ikK/wt9sNtfOEWAFDUnFhLeMzvou2E2YL7KeWUD1v0MU4/DSfYs4DKew9spcPV+kBYJyt/WxTqCyZzI/RaOfcWqAp/K+Hxg8GDjIjlqplee1BGfgqv9IenIzXAgMBAAECggEAUHh30QD2kT0Bf6v5bjX0pHOdvdOtWUKu8RkFibzwAb8K1LQ6wlYtY7MKiUj8+w1zO6VyTD6mCdxBMmPpGc/K3nrtShYsISFq8zrpIaByvcNmatCuKn2cgseaTAiNnVR6woML0WWm1soI97OyyqPPWzhI0ZkUESKgsaHkUHl4PI2u3xH7g/dk3Et+QJ5mk27OVrJ1diIAoJKynmfFGcXm1eg7hRGJM36BmJ3WnvcMNzrE6Ks8SSZFZKDf7NmG3FHfqMgcbBV89Be+2IcXoeJWhs5Oi+/s03Tcm21VmPzPRTOfJspDyewnjF6PHSTHz7PX7PvNuyOLgPBwD6y7vaT6UQKBgQDVzYyV3rVea+o8177CXegrmyyrDvVjaenUTG7kLPcVfCFEiXdPK9M+J18C9Ncm4vS2nPb6vH81ksEX7Faa3RupSEWJa9GcxQTjFCXbljl/9hJ/V4S5cYsZK/XWdQw88teYuWpkaOeK32M4huSHatd+fT5XGfZOrro0L3FjPKjJZQKBgQCbjnaHaRLlhoiHtpLpXaRcljnmmrHa1osazXeHMNLhV/qMoimLnLWROQ+x/TZ2eKe9Z1sd7FGn+QMsyvobGRFEkOpx5grHx37fuaP94mOJWEgPYSj8NPLp27GV58anWylbLEQ4YQXSmtDJlKbs0fe0Iu9bo34HJzrEJRmQewC3iwKBgQCtHKlgD9s6gJZAfU9vgSmjZRldx9bYj8FMrDZ9egr10nP9UnDQIeQAx1AezLAIRGtwENfJXSaC8jh2bl4RNkZXYrUq96nZDY1Pb9jXW2NjQJLpmKtWm6DM2NNMuakXEGmQt1B1zJrtzsI/2rjfDJs/R5laXSMZwk/yQRfGCi+AIQKBgALjfV38XIZ4nhZvFIFS5Nd3TrHyk3Tt4P1pbVvMU04t9RAhfsYB7fk5Zwo2GonOqcbBoZaHqeiFnkJ5rnVMXN66FjBxRif5k2iSKPJw/soxIn1un3U3gn9HPh/7gtvevIDd7JJjctk7WL81jHf/Wis1Lt6zxYZaeyPjUHs3XYcLAoGAVhUdH+YLKy+ttX3r1hNySrgwlQHohVl6jBkIZMPUVMVLCtmSwtEXPbrSk7OpaNF+yI5PiZddyvYJjPLmqOJatQIR9ZX7/iZtFmxYCuyalJFjpQhkk9UCaYkeuIAnlfDEUDRrrXEnkg3PZw9LH1IL7F88caVDh/rj6mDbS50AfMc=
+  #支付宝公钥
+  alipay_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtIxJ3K8q8U3wLPVSuyCXLwnrq407moAE2qe7tEI2qGQolNURB0wrLiCOkejzYxDVf5jadzP1sTnpn6XqtaOgpxmkSlwas+mYRaakY5C5R7sNKSmJN4GtcYSJdWr3qoSjrRK51qfHXUrTP1CvpzfzxtgkkM7TLPD1YD1TNQVfzQ+2XF59PcVfUWXEDNeShZZoIkV93TAe3wN/d8aximjTWpAgLiMJYhY9/5j4Kj9sNSRcxKwD/N9GG0P+NNiYdGOCS08MryOPrsLSGg8v+Uh3lByE0uXKR9TQhKG5ZsZ3gC9SRjLEcA6Slzzjxnb8tU1/7LjHniAV4GvnK/aNHhrrdQIDAQAB
+  notify_url: http://localhost:8989  #公司支付宝异步回调地址
+  return_url: http://localhost:8989  #公司支付宝同步回调地址（如果是二维码扫码可以不配置）
+  sign_type: RSA2
+  charset: utf-8
+  #gatewayUrl: https://openapi.alipay.com/gateway.do
+  # 此处为沙盒应用
+  gatewayUrl: https://openapi.alipaydev.com/gateway.do
+  # 保存支付日志的地址 如果是linux服务器配置没有盘符
+  log_path: D:\Work-Space\ProjectsFile\alipay\
