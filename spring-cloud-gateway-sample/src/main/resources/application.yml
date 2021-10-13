@@ -1,0 +1,76 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: define_filter
+          uri: http://localhost:8080/say
+          predicates:
+            - Path=/gateway/**
+          filters:
+#            - name: GpDefine
+#              args:
+#                name: Gp_Mic
+            - name: RequestRateLimiter
+              args:
+                denyEmptyKey: true
+                emptyKeyStatus: SERVICE_UNAVAILABLE
+                keyResolver: '#{@ipAddressKeyResolver}'
+                redis-rate-limiter:
+                  replenishRate: 1
+                  burstCapacity: 2
+            - StripPrefix=1
+#        - id: requestratelimiter_route
+#          uri: http://example.com
+#          filters:
+#            - name: RequestRateLimiter
+#              args:
+#                redis-rate-limiter.replenishRate: 10
+#                redis-rate-limiter.burstCapacity: 20
+#        - id: add_response_header_route
+#          uri: http://example.com
+#          filters:
+#            - AddResponseHeader=X-Response-Foo, Bar
+#        - id: add_request_paramater_route
+#          uri: http://example.com
+#          filters:
+#            - AddRequestParamter=foo, bar
+#        - id: path_route
+#          uri: http://example.com
+#          predicates:
+#            - Path=/red/{segment},/blue/{segment}
+#        - id: method_route
+#          uri: http://example.com
+#          predicates:
+#            - Method=GET,POST
+#        - id: host_route
+#          uri: http://example.com
+#          predicates:
+#            - Host=**.somehost.com,**.anotherhost.com
+#        - id: header_route
+#          uri: http://example.com
+#          predicates:
+#            - Header=X-Request-Id, \d+
+#        - id: cookie_route
+#          uri: http://example.com
+#          predicates:
+#            - Cookie=chocolate, mic
+#        - id: before_route
+#          uri: http://www.baidu.com
+#          predicates:
+#            - After=2021-09-22T24:00:00.000+08:00[Asia/Shanghai]
+#        - id: auth
+#          uri: http://localhost:8080/say  #访问地址
+#          predicates:
+#            - Path=/gateway/** #路径匹配
+#          filters:
+#            - StripPrefix=1 #跳过前缀
+  redis:
+    host: 192.168.198.128
+    port: 6379
+    password: 123456
+    database: 1
+
+
+server:
+  port: 8088
+
